@@ -1,11 +1,13 @@
 package com.lti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lti.Repo.TrackerDAOImpl;
 import com.lti.model.Tracker;
 
-public class TrakcerServiceImpl implements TrackerService {
+@Service
+public class TrackerServiceImpl implements TrackerService {
 
 	@Autowired
 	TrackerDAOImpl trackerDAO;

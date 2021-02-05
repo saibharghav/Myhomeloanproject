@@ -3,10 +3,12 @@ package com.lti.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lti.Repo.LoanDAOImpl;
 import com.lti.model.Loan;
 
+@Service
 public class LoanServiceImpl implements LoanService {
 
 	@Autowired

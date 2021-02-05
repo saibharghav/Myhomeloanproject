@@ -56,81 +56,81 @@ class HomeLoanProjectApplicationTests {
 	
 	
 	
-	@Test
-	void addCustomerWithAccounts() {
-		System.out.println("In the test");
-		Customer c = new Customer();
-//		c.setCustId(12);
-		c.setFirstName("First");
-		c.setMiddleName("Middle_Name");
-		c.setLastName("Last_Name");
-		c.setEmail("email@email.com");
-		c.setToe("Software");
-		c.setMobileNumber(1212121212);
-		c.setPinCode(34561);
-		c.setPassword("***");
-		Account a=new Account();
-//		a.setAccountnumber("A1");
-		a.setBalance(50000);
-		a.setCustomer(c);
-		List<Account> myAccountList= new ArrayList<Account>();
-		myAccountList.add(a);
-		c.setAccounts(myAccountList);
-//		c.setApplications(null);
-//		c.setTrackers(null);
-		c1.addUser(c);
-		System.out.println("Added the test");
-	}
+//	@Test
+//	void addCustomerWithAccounts() {
+//		System.out.println("In the test");
+//		Customer c = new Customer();
+////		c.setCustId(12);
+//		c.setFirstName("First");
+//		c.setMiddleName("Middle_Name");
+//		c.setLastName("Last_Name");
+//		c.setEmail("email@email.com");
+//		c.setToe("Software");
+//		c.setMobileNumber(1212121212);
+//		c.setPinCode(34561);
+//		c.setPassword("***");
+//		Account a=new Account();
+////		a.setAccountnumber("A1");
+//		a.setBalance(50000);
+//		a.setCustomer(c);
+//		List<Account> myAccountList= new ArrayList<Account>();
+//		myAccountList.add(a);
+//		c.setAccounts(myAccountList);
+////		c.setApplications(null);
+////		c.setTrackers(null);
+//		c1.addUser(c);
+//		System.out.println("Added the test");
+//	}
 	
 	
-	@Test
-	void addCustomerWithApplicationWithAccounts() throws ParseException{
-		System.out.println("In the test");
-		Customer c = new Customer();
-//		c.setCustId(12);
-		c.setFirstName("First");
-		c.setMiddleName("Middle_Name");
-		c.setLastName("Last_Name");
-		c.setEmail("email@email.com");
-		c.setToe("Software");
-		c.setMobileNumber(1212121212);
-		c.setPinCode(34561);
-		c.setPassword("***");
-		Account a=new Account();
-//		a.setAccountnumber("A1");
-		a.setBalance(50000);
-		a.setCustomer(c);
-		List<Account> myAccountList= new ArrayList<Account>();
-		myAccountList.add(a);
-		c.setAccounts(myAccountList);
-		Application a1=new Application();
-		a1.setAadhar("Yes");
-		a1.setAadharno("345435245");
-		a1.setAgreement("Yes");
-		a1.setAppToe("Software");
-		a1.setEmpName("Bharghav");
-		a1.setEstAmt(1200000);
-		a1.setGender("Male");
-		a1.setLoa("Yes");
-		a1.setNationality("Indian");
-		a1.setNoc("Yes");
-		a1.setOrg("LTI");
-		a1.setPan("Yes");
-		a1.setPanno("989898");
-		a1.setProLoc("Hyderabad");
-		a1.setProName("Car");
-		a1.setRetirAge(60);
-		a1.setSalaryslp("Yes");
-		a1.setVoter("Yes");
-		a1.setCustomer(c);
-		a1.setDob(new SimpleDateFormat("dd-MM-yyyy").parse("27-8-1999"));
-		List<Application> myApplicationList= new ArrayList<Application>();
-		myApplicationList.add(a1);
-		c.setApplications(myApplicationList);
-//		c.setTrackers(null);
-		c1.addUser(c);
-		System.out.println("Added the test");
-	}
+//	@Test
+//	void addCustomerWithApplicationWithAccounts() throws ParseException{
+//		System.out.println("In the test");
+//		Customer c = new Customer();
+////		c.setCustId(12);
+//		c.setFirstName("First");
+//		c.setMiddleName("Middle_Name");
+//		c.setLastName("Last_Name");
+//		c.setEmail("email@email.com");
+//		c.setToe("Software");
+//		c.setMobileNumber(1212121212);
+//		c.setPinCode(34561);
+//		c.setPassword("***");
+//		Account a=new Account();
+////		a.setAccountnumber("A1");
+//		a.setBalance(50000);
+//		a.setCustomer(c);
+//		List<Account> myAccountList= new ArrayList<Account>();
+//		myAccountList.add(a);
+//		c.setAccounts(myAccountList);
+//		Application a1=new Application();
+//		a1.setAadhar("Yes");
+//		a1.setAadharno("345435245");
+//		a1.setAgreement("Yes");
+//		a1.setAppToe("Software");
+//		a1.setEmpName("Bharghav");
+//		a1.setEstAmt(1200000);
+//		a1.setGender("Male");
+//		a1.setLoa("Yes");
+//		a1.setNationality("Indian");
+//		a1.setNoc("Yes");
+//		a1.setOrg("LTI");
+//		a1.setPan("Yes");
+//		a1.setPanno("989898");
+//		a1.setProLoc("Hyderabad");
+//		a1.setProName("Car");
+//		a1.setRetirAge(60);
+//		a1.setSalaryslp("Yes");
+//		a1.setVoter("Yes");
+//		a1.setCustomer(c);
+//		a1.setDob(new SimpleDateFormat("dd-MM-yyyy").parse("27-8-1999"));
+//		List<Application> myApplicationList= new ArrayList<Application>();
+//		myApplicationList.add(a1);
+//		c.setApplications(myApplicationList);
+////		c.setTrackers(null);
+//		c1.addUser(c);
+//		System.out.println("Added the test");
+//	}
 	
 	
 	
@@ -143,9 +143,9 @@ class HomeLoanProjectApplicationTests {
 		a1.setAadharno("21412312");
 		a1.setAgreement("Yes");
 		a1.setAppToe("Software");
-		a1.setEmpName("Sowmya");
-		a1.setEstAmt(1200000);
-		a1.setGender("Female");
+		a1.setEmpName("Nikhil");
+		a1.setEstAmt(1200200);
+		a1.setGender("Male");
 		a1.setLoa("Yes");
 		a1.setNationality("Indian");
 		a1.setNoc("Yes");
@@ -159,7 +159,7 @@ class HomeLoanProjectApplicationTests {
 		a1.setVoter("Yes");
 		a1.setDob(new SimpleDateFormat("dd-MM-yyyy").parse("17-1-1900"));
 		System.out.println("Calling the test");
-		ad1.addApplication(a1);
+		ad1.addApplication("a@big.com",a1);
 		System.out.println("Added the test");
 	}
 
@@ -196,7 +196,7 @@ class HomeLoanProjectApplicationTests {
 		a1.setAadharno("21412312");
 		a1.setAgreement("Yes");
 		a1.setAppToe("Software");
-		a1.setEmpName("Sowmya");
+		a1.setEmpName("Vishal");
 		a1.setEstAmt(1200000);
 		a1.setGender("Female");
 		a1.setLoa("Yes");
@@ -222,7 +222,7 @@ class HomeLoanProjectApplicationTests {
 		myLoanList.add(loan);
 		a1.setLoans(myLoanList);
 		System.out.println("Calling application repository..............");
-		ad1.addApplication(a1);
+		ad1.addApplication("a@big.com",a1);
 	}
 	
 	
@@ -235,7 +235,7 @@ class HomeLoanProjectApplicationTests {
 		a1.setAadharno("21412312");
 		a1.setAgreement("Yes");
 		a1.setAppToe("Software");
-		a1.setEmpName("Sowmya");
+		a1.setEmpName("Seema");
 		a1.setEstAmt(1200000);
 		a1.setGender("Female");
 		a1.setLoa("Yes");
@@ -261,13 +261,15 @@ class HomeLoanProjectApplicationTests {
 		myLoanList.add(loan);
 		a1.setLoans(myLoanList);
 		Tracker t= new Tracker();
-		t.setStatus("Under Approval");
-		t.setTrackerId(a1.getApplicationId());
-		System.out.println("Application ID is "+a1.getApplicationId());
+//		t.setStatus("Under Approval");
+//		System.out.println("Application ID is "+a1.getApplicationId());
+//		t.setApplication(a1);
+//		a1.setTracker(t);
+		t.setStatus("Pending");
 		t.setApplication(a1);
 		a1.setTracker(t);
 		System.out.println("Calling application repository..............");
-		ad1.addApplication(a1);
+		ad1.addApplication("a@big.com",a1);
 	}
 	
 
@@ -275,9 +277,8 @@ class HomeLoanProjectApplicationTests {
 	@Test
 	public void testRejectStatus()
 	{
-		Tracker t=new Tracker();
 		System.out.println("Reject Status calling");
-		t1.rejectStatus(28);
+		t1.rejectStatus(3);
 	}
 	
 	
@@ -285,14 +286,14 @@ class HomeLoanProjectApplicationTests {
 	public void testApproveStatus()
 	{
 		System.out.println("Approve status calling");
-		t1.approveStatus(28);
+		t1.approveStatus(3);
 	}
 	
 	@Test
 	public void testCheckStatus()
 	{
 		System.out.println("Calling Check Status........");
-		System.out.println("The status is ------------>"+t1.checkStatus(43));
+		System.out.println("The status is ------------>"+t1.checkStatus(3));
 	}
 	
 	@Test 
@@ -313,7 +314,7 @@ class HomeLoanProjectApplicationTests {
 	public void testGetApplicationByID()
 	{
 		Application a= new Application();
-		a=ad1.getApplicationByID(31);
+		a=ad1.getApplicationByID(1);
 		System.out.println("Name is ->"+a.getEmpName());
 		System.out.println("ID is -> "+a.getApplicationId());
 		System.out.println("Type of employement is ->"+a.getAppToe());
@@ -324,7 +325,7 @@ class HomeLoanProjectApplicationTests {
 	{//Not Working
 		Loan l=null;
 		Application a= new Application();
-		a=ad1.getApplicationByID(43);
+		a=ad1.getApplicationByID(3);
 		System.out.println("Name is ->"+a.getEmpName());
 		System.out.println("ID is -> "+a.getApplicationId());
 		System.out.println("Type of employement is ->"+a.getAppToe());
@@ -362,6 +363,12 @@ class HomeLoanProjectApplicationTests {
 		}
 	}
 	
-	
-	
+	@Test 
+	public void getCustomerByEmailID()
+	{
+		Customer c=c1.getCustomerByEmail("a@big.com");
+		System.out.println("CustomerID -------> "+c.getCustId());
+		System.out.println("Customer Name -------> "+c.getMiddleName());
+		
+	}
 }

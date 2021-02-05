@@ -52,6 +52,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return (Long) em.createQuery("select count(c.email) from Customer c where c.email =: eml")
 				.setParameter("eml", email).getSingleResult() == 1 ? true : false;
 	}
+	
+	
+	@Override
+	public Customer getCustomerByEmail(String email)
+	{
+		Customer c1=(Customer) em.createQuery("select c from Customer c where c.email=:eml ").setParameter("eml",email).getSingleResult();
+		return c1;
+	}
+			
 
 
 }

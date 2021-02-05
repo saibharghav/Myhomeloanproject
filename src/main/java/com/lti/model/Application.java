@@ -3,6 +3,9 @@ package com.lti.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -73,12 +76,12 @@ public class Application implements Serializable {
 	private Customer customer;
 
 	//bi-directional many-to-one association to Loan
-	@OneToMany(mappedBy="application",cascade=CascadeType.ALL,
-		       fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="application",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Loan> loans;
 
 	//bi-directional one-to-one association to Tracker
 	@OneToOne(mappedBy="application",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@PrimaryKeyJoinColumn
 	private Tracker tracker;
 
 	public Application() {
@@ -243,7 +246,7 @@ public class Application implements Serializable {
 	public void setVoter(String voter) {
 		this.voter = voter;
 	}
-
+	@JsonIgnore
 	public Customer getCustomer() {
 		return this.customer;
 	}
@@ -251,7 +254,7 @@ public class Application implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+	//@JsonIgnore
 	public List<Loan> getLoans() {
 		return this.loans;
 	}
@@ -273,7 +276,7 @@ public class Application implements Serializable {
 
 		return loan;
 	}
-
+	//@JsonIgnore
 	public Tracker getTracker() {
 		return this.tracker;
 	}

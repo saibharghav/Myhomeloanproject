@@ -1,10 +1,12 @@
 package com.lti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lti.Repo.AccountDAOImpl;
 import com.lti.model.Account;
 
+@Service
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired

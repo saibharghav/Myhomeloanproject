@@ -1,10 +1,12 @@
 package com.lti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lti.Repo.CustomerDAOImpl;
 import com.lti.model.Customer;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired

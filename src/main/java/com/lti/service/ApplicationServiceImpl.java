@@ -3,19 +3,23 @@ package com.lti.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lti.Repo.ApplicationDAOImpl;
 import com.lti.model.Application;
 
+@Service
 public class ApplicationServiceImpl implements ApplicationService {
 
 	@Autowired
 	ApplicationDAOImpl applicationDao;
 		
 		@Override
-		public String addApplication(Application application) {
+		public String addApplication(String email,Application application) {
 			try {
-				 return "Your application ID is "+applicationDao.addApplication(application).getApplicationId();
+				System.out.println("In Service Layer");
+				 applicationDao.addApplication(email,application);
+				 return "Application Added";
 			}
 			catch(Exception e)
 			{

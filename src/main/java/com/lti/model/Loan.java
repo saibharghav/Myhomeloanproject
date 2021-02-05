@@ -2,6 +2,9 @@ package com.lti.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 
 
@@ -86,7 +89,8 @@ public class Loan implements Serializable {
 	public void setTenure(double tenure) {
 		this.tenure = tenure;
 	}
-
+	@JsonIgnore
+	
 	public Application getApplication() {
 		return this.application;
 	}

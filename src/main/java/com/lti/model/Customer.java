@@ -41,17 +41,13 @@ public class Customer implements Serializable {
 
 	private String toe;
 
-	//bi-directional many-to-one association to Account
-	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
-	private List<Account> accounts;
+	
 
 	//bi-directional many-to-one association to Application
-	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Application> applications;
 
-	//bi-directional many-to-one association to Tracker
-	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
-	private List<Tracker> trackers;
+	
 
 	public Customer() {
 	}
@@ -128,27 +124,7 @@ public class Customer implements Serializable {
 		this.toe = toe;
 	}
 
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
-	public Account addAccount(Account account) {
-		getAccounts().add(account);
-		account.setCustomer(this);
-
-		return account;
-	}
-
-	public Account removeAccount(Account account) {
-		getAccounts().remove(account);
-		account.setCustomer(null);
-
-		return account;
-	}
+	
 
 	public List<Application> getApplications() {
 		return this.applications;
@@ -172,26 +148,13 @@ public class Customer implements Serializable {
 		return application;
 	}
 
-	public List<Tracker> getTrackers() {
-		return this.trackers;
+	@Override
+	public String toString() {
+		return "Customer [custId=" + custId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", mobileNumber=" + mobileNumber + ", password=" + password
+				+ ", pinCode=" + pinCode + ", toe=" + toe + ", applications=" + applications
+				+ "]";
 	}
-
-	public void setTrackers(List<Tracker> trackers) {
-		this.trackers = trackers;
-	}
-
-	public Tracker addTracker(Tracker tracker) {
-		getTrackers().add(tracker);
-		tracker.setCustomer(this);
-
-		return tracker;
-	}
-
-	public Tracker removeTracker(Tracker tracker) {
-		getTrackers().remove(tracker);
-		tracker.setCustomer(null);
-
-		return tracker;
-	}
-
+	
+	
 }

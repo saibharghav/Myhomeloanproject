@@ -1,5 +1,6 @@
 package com.lti.Repo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,10 +8,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lti.model.Application;
+import com.lti.model.Customer;
 import com.lti.model.Loan;
 import com.lti.model.Tracker;
 
@@ -18,16 +20,34 @@ import com.lti.model.Tracker;
 @Repository
 public class ApplicationDAOImpl implements ApplicationDAO {
 	
+	@Autowired
+	CustomerDAOImpl customerDAOImpl;
+	
 	@PersistenceContext
 	EntityManager em;
 
 	@Transactional
 	@Override
-	public Application addApplication(Application application) {
+	public void addApplication(String email,Application application) {
 		// TODO Auto-generated method stub
-		System.out.println("In the addApplication method");
+		System.out.println("In the addApplicationRepo method");
+		//System.out.println("ApplicationID is "+application.getApplicationId());
+		//===================================================
+		Customer c1=customerDAOImpl.getCustomerByEmail(email);
+		Customer c=em.find(Customer.class,c1.getCustId());
+		application.setCustomer(c);
+		List<Application> applicationList=new ArrayList<Application>();
+		c.setApplications(applicationList);
+		Tracker t=application.getTracker();
+		t.setApplication(application);
+		application.setTracker(t);
+		List<Loan> l=application.getLoans();
+		for (Loan loan : l) {
+			loan.setApplication(application);
+		}
+		application.setLoans(l);
+		//===================================================
 		em.persist(application);
-		return application;
 	}
 	
 	@Override

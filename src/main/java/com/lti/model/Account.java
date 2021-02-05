@@ -15,15 +15,11 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int accountnumber;
 
 	private double balance;
 
-	//bi-directional many-to-one association to Customer
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="CUST_ID")
-	private Customer customer;
 
 	public Account() {
 	}
@@ -44,12 +40,5 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
 
 }
