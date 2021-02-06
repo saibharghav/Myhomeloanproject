@@ -28,7 +28,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 
 	@Transactional
 	@Override
-	public void addApplication(String email,Application application) {
+	public String addApplication(String email,Application application) {
 		// TODO Auto-generated method stub
 		System.out.println("In the addApplicationRepo method");
 		//System.out.println("ApplicationID is "+application.getApplicationId());
@@ -48,6 +48,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		application.setLoans(l);
 		//===================================================
 		em.persist(application);
+		return "Application Added and your application ID is "+application.getApplicationId();
 	}
 	
 	@Override

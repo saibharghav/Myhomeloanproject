@@ -25,11 +25,11 @@ public class Application implements Serializable {
 	@Column(name="APPLICATION_ID")
 	private int applicationId;
 
-	private String aadhar;
+	private String aadhar;//
 
 	private String aadharno;
 
-	private String agreement;
+	private String agreement;//
 
 	@Column(name="APP_TOE")
 	private String appToe;

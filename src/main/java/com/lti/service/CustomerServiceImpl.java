@@ -38,4 +38,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepo.isEmailPresent(email);
 	}
 
+	@Override
+	public Customer getCustomerByEmail(String Email)
+	{
+		return customerRepo.getCustomerByEmail(Email);
+	}
 }

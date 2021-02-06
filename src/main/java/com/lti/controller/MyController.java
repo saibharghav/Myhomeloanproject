@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.DTO.CustomerApplicationDTO;
 import com.lti.model.Application;
 import com.lti.model.Customer;
 import com.lti.model.Loan;
@@ -29,7 +30,7 @@ import com.lti.service.LoanServiceImpl;
 import com.lti.service.TrackerServiceImpl;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200")
 public class MyController {
 	
 	
@@ -123,22 +124,23 @@ public class MyController {
 	}
 	
 	
-	@GetMapping("/loginTest/{email}/{password}")
+	@PostMapping("/loginTest")
 	@ResponseBody
-	public String loginTest(@PathVariable Map<String,String> LoginTest)
+	public Customer loginTest1(@RequestBody Customer customer)
 	{
-		String Email=LoginTest.get("email");
-		String Password=LoginTest.get("password");
-		System.out.println(Email+"  "+Password);
-		boolean check=customerService.isEmailPresent(Email);
+
+		boolean check=customerService.isEmailPresent(customer.getEmail());
+		
 		if(check)
 		{
-				int a= customerService.testLoginUser(Email,Password);
-				if(a==1)
-					return "Correct User Welcome";
-				return "Invalid crendentials";
+			int a=customerService.testLoginUser(customer.getEmail(), customer.getPassword());
+			if(a==1) {
+				Customer c=customerService.getCustomerByEmail(customer.getEmail());
+				return c;
+			}
+			return null;
 		}
-		return "Invalid Email";
+		return null;
 	}
 	
 	@GetMapping("/application")
@@ -147,18 +149,13 @@ public class MyController {
 		return applicationService.getAllApplications();
 	}
 	
-	@PostMapping("/ApplicationForm")
+
+	
+	@PostMapping("/AddApplication")
 	@ResponseBody
-	public String applicationForm(@RequestParam String email, @RequestBody Application application)
+	public String addApplication(@RequestBody CustomerApplicationDTO customerApplicationDTO)
 	{
-		
-		return applicationService.addApplication(email,application);
-		
+		return applicationService.addApplication(customerApplicationDTO);
 	}
-	
-	
-	
-	
-	
 	
 }
