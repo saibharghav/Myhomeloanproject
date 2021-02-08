@@ -66,6 +66,16 @@ public class Application implements Serializable {
 	@Column(name="RETIR_AGE")
 	private int retirAge;
 
+	private double salary;
+	
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
 	private String salaryslp;
 
 	private String voter;

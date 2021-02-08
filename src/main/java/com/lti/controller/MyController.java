@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.DTO.ApplicationsDTO;
 import com.lti.DTO.CustomerApplicationDTO;
 import com.lti.model.Application;
 import com.lti.model.Customer;
@@ -74,35 +75,27 @@ public class MyController {
 		System.out.println(customerService.isEmailPresent(customer.getEmail()));
 		return customerService.isEmailPresent(customer.getEmail());
 	}
-//	@PostMapping("/loginTest")
-//	public String loginTest1(@RequestBody Customer customer)
-//	{
-//		boolean check=customerService.isEmailPresent(customer.getEmail());
-//		if(check)
-//		{
-//			int a= customerService.testLoginUser(customer.getEmail(), customer.getPassword());
-//			if(a==1)
-//				return "Correct User Welcome";
-//			return "Invalid crendentials";
-//		}
-//		return "Invalid email ID";
-//	}
 	
-	@PostMapping("/checkStatus/{a}")
+	
+	@GetMapping("/checkStatus/{a}")
 	@ResponseBody
 	public String checkStatus(@PathVariable("a") Integer a)
 	{
 		String status=trackerService.checkStatus(a);
-		System.out.println("Status is "+status);
+		System.out.println(status);
 		return status;
 	}
 	
-	@PostMapping("/getBalance/{a}")
+	@GetMapping("/getBalance/{a}")
 	@ResponseBody
-	public double getBalance(@PathVariable("a") Integer a)
+	public String getBalance(@PathVariable("a") Integer a)
 	{
 		double balance=accountService.checkBalance(a);
-		return balance;
+		if(balance>0)
+		{
+			return Double.toString(balance);
+		}
+		return "Invalid application ID";
 	}
 	
 	@PutMapping("/status/{a}/{b}")
@@ -153,9 +146,31 @@ public class MyController {
 	
 	@PostMapping("/AddApplication")
 	@ResponseBody
-	public String addApplication(@RequestBody CustomerApplicationDTO customerApplicationDTO)
+	public int addApplication(@RequestBody CustomerApplicationDTO customerApplicationDTO)
 	{
 		return applicationService.addApplication(customerApplicationDTO);
 	}
 	
+	@GetMapping("/allApplications")
+	@ResponseBody
+	public List<ApplicationsDTO> getApplications()
+	{
+		return applicationService.allApplications();
+	}
+	
+	@PutMapping("/approveStatus/{ID}")
+	@ResponseBody
+	public int approveStatus(@PathVariable int ID)
+	{
+		trackerService.approveStatus(ID);
+		return 1;
+	}
+	
+	@PutMapping("/rejectStatus/{ID}")
+	@ResponseBody
+	public int rejectStatus(@PathVariable int ID)
+	{
+		trackerService.rejectStatus(ID);
+		return 3;
+	}
 }

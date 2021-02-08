@@ -50,7 +50,7 @@ public class TrackerServiceImpl implements TrackerService {
 		}
 		catch(Exception e)
 		{
-			return e.getMessage();
+			return null;
 		}
 	}
 

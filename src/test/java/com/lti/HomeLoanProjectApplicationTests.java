@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.lti.DTO.ApplicationsDTO;
 import com.lti.Repo.AccountDAOImpl;
 import com.lti.Repo.ApplicationDAOImpl;
 import com.lti.Repo.CustomerDAOImpl;
@@ -184,7 +185,9 @@ class HomeLoanProjectApplicationTests {
 		System.out.println("Calling the DAO");
 		List<Loan> myList=l1.getLoans();
 		System.out.println("List is created");
-		System.out.println(myList.get(0).getMaxLoanamt());
+		for(Loan loan:myList) {
+			System.out.println(loan.getApplication().getApplicationId());
+		}
 	}
 	
 	
@@ -314,7 +317,7 @@ class HomeLoanProjectApplicationTests {
 	public void testGetApplicationByID()
 	{
 		Application a= new Application();
-		a=ad1.getApplicationByID(1);
+		a=ad1.getApplicationByID(2);
 		System.out.println("Name is ->"+a.getEmpName());
 		System.out.println("ID is -> "+a.getApplicationId());
 		System.out.println("Type of employement is ->"+a.getAppToe());
@@ -325,7 +328,7 @@ class HomeLoanProjectApplicationTests {
 	{//Not Working
 		Loan l=null;
 		Application a= new Application();
-		a=ad1.getApplicationByID(3);
+		a=ad1.getApplicationByID(2);
 		System.out.println("Name is ->"+a.getEmpName());
 		System.out.println("ID is -> "+a.getApplicationId());
 		System.out.println("Type of employement is ->"+a.getAppToe());
@@ -370,5 +373,16 @@ class HomeLoanProjectApplicationTests {
 		System.out.println("CustomerID -------> "+c.getCustId());
 		System.out.println("Customer Name -------> "+c.getMiddleName());
 		
+	}
+	
+	
+	@Test
+	public void AdminSeenDetails()
+	{
+		List<ApplicationsDTO> myList=ad1.getApplications();
+		for(ApplicationsDTO a:myList)
+		{
+			System.out.println(a.getAppToe());
+		}
 	}
 }

@@ -41,7 +41,7 @@ public class LoanDAOImpl implements LoanDAO {
 	@Override
 	public Loan getLoanByApplicationID(int a) {
 		// TODO Auto-generated method stub
-		String hql="SELECT l FROM Loan l join Application a WHERE a.applicationId=l.application and a.applicationId=:sa";
+		String hql="SELECT l FROM Loan l join Application a ON a.applicationId=l.application and a.applicationId=:sa";
 		Query query=em.createQuery(hql);
 		query.setParameter("sa", a);
 		return (Loan) query.getSingleResult();

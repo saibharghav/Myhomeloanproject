@@ -2,6 +2,8 @@ package com.lti.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.springframework.context.annotation.Scope;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -10,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  */
 @Entity
+@Scope(value="prototype")
 @NamedQuery(name="Tracker.findAll", query="SELECT t FROM Tracker t")
 public class Tracker implements Serializable {
 	private static final long serialVersionUID = 1L;

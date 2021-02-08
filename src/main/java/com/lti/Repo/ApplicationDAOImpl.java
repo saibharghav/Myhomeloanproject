@@ -8,9 +8,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lti.DTO.ApplicationsDTO;
 import com.lti.model.Application;
 import com.lti.model.Customer;
 import com.lti.model.Loan;
@@ -22,17 +24,18 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	
 	@Autowired
 	CustomerDAOImpl customerDAOImpl;
+	@Autowired
+	LoanDAOImpl loanDAOImpl;
 	
+
 	@PersistenceContext
 	EntityManager em;
 
 	@Transactional
 	@Override
-	public String addApplication(String email,Application application) {
+	public int addApplication(String email,Application application) {
 		// TODO Auto-generated method stub
 		System.out.println("In the addApplicationRepo method");
-		//System.out.println("ApplicationID is "+application.getApplicationId());
-		//===================================================
 		Customer c1=customerDAOImpl.getCustomerByEmail(email);
 		Customer c=em.find(Customer.class,c1.getCustId());
 		application.setCustomer(c);
@@ -46,19 +49,14 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			loan.setApplication(application);
 		}
 		application.setLoans(l);
-		//===================================================
 		em.persist(application);
-		return "Application Added and your application ID is "+application.getApplicationId();
+		return application.getApplicationId();
 	}
 	
 	@Override
 	public  List<Application> getAllApplications()
 	{
 		System.out.println("In get all Applications method");
-		//String hql="select a.application_id,a.aadharno,a.emp_name,l.loan_amt,l.emi_amount,l.tenure,t.status from Application a join Loan l join Tracker t where a.application_id=l.application_id and l.application_id=t.application_id";
-		//String hql="select a.application_id,a.emp_name,l.loan_amt,l.emi_amount from application a inner join loan l on a.application_id=l.application_id";
-		//String hql1="SELECT a.applicationId,a.empName,l.loanAmt,l.emiAmount,l.tenure,t.status from Application a join fetch Loan l join Tracker t on a.applicationId=l.application and a.applicationId=t.application";
-		
 		Query query = em.createQuery(" from Application",Application.class);
 		System.out.println("Progressing the list.........");
 		@SuppressWarnings("unchecked")
@@ -74,7 +72,6 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			{
 				System.out.println("NO tracker");
 			}
-			//System.out.println(app.getTracker().getStatus());
 			List<Loan> myList=app.getLoans();
 			for (Loan loan : myList) {
 				System.out.println("Loan Amount is ->"+loan.getLoanAmt());
@@ -94,6 +91,51 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		Query query=em.createQuery(hql);
 		query.setParameter("sa", applicationID);
 		return (Application) query.getSingleResult();
+	}
+	
+	
+	@Override
+	public List<ApplicationsDTO> getApplications() {
+		// TODO Auto-generated method stub
+		List<ApplicationsDTO> myApplicationsDTOList = new ArrayList<ApplicationsDTO>();
+		
+		System.out.println("Creating the query");
+		Query query =em.createQuery(" from Application",Application.class);
+		System.out.println("Getting the list");
+		@SuppressWarnings("unchecked")
+		List<Application> allApplications=query.getResultList();
+		System.out.println("Got the list");
+		Query query1;Loan l;String hql;
+		for(Application App :allApplications)
+		{
+			int id = App.getApplicationId();
+			System.out.println("ID IS: "+id);
+			ApplicationsDTO myApplicationsDTO = new ApplicationsDTO();
+			l=loanDAOImpl.getLoanByApplicationID(id);
+			System.out.println(l.toString());
+			System.out.println("--------------->"+App.getTracker().hashCode());
+			Tracker t=App.getTracker();
+//			hql="SELECT t from Tracker t join Application a ON a.applicationId=t.application and a.applicationId=:sa";
+//			query1=em.createQuery(hql);
+//			System.out.println("APP ID CHECKING....."+App.getApplicationId());
+//			query1.setParameter("sa", App.getApplicationId());
+//			Tracker t= (Tracker) query1.getSingleResult();
+			System.out.println(t.toString());
+			System.out.println("TRACKER ID CHECKING......"+t.getStatus());
+			myApplicationsDTO.setApplicationId(App.getApplicationId());
+			myApplicationsDTO.setAppToe(App.getAppToe());
+			myApplicationsDTO.setEmpName(App.getEmpName());
+			myApplicationsDTO.setLoanAmt(l.getLoanAmt());
+			myApplicationsDTO.setEmiAmount(l.getEmiAmount());
+			myApplicationsDTO.setSalary(App.getSalary());
+			myApplicationsDTO.setStatus(t.getStatus());
+			myApplicationsDTOList.add(myApplicationsDTO);
+		}
+		for(ApplicationsDTO a:myApplicationsDTOList)
+		{
+			System.out.println(a);
+		}
+		return myApplicationsDTOList;
 	}
 
 }

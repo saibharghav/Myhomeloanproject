@@ -30,11 +30,6 @@ public class TrackerDAOImpl implements TrackerDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Integer getStatusById(int a) {
-//	Query query=  enitityManager.createQuery("select t.status from Tracker t where t.appId=:appId");
-//	query.setParameter("appId", tracker.getApplicationId());
-//	List<Integer> status=query.getResultList();
-//	System.err.println("Status"+status.get(0));
-//	return status.get(0);
 		String loanStatus=(String) entityManager.createNativeQuery("Select t.status from Tracker where t.applicationId=:id").getSingleResult();
 		System.out.println("Status---------> "+loanStatus);
 		return null;
