@@ -95,7 +95,7 @@ public class MyController {
 		{
 			return Double.toString(balance);
 		}
-		return "Invalid application ID";
+		return "Invalid Account ID";
 	}
 	
 	@PutMapping("/status/{a}/{b}")
@@ -160,15 +160,15 @@ public class MyController {
 	
 	@PutMapping("/approveStatus/{ID}")
 	@ResponseBody
-	public int approveStatus(@PathVariable int ID)
+	public int approveStatus(@PathVariable("ID") int ID)
 	{
 		trackerService.approveStatus(ID);
 		return 1;
 	}
 	
-	@PutMapping("/rejectStatus/{ID}")
+	@PutMapping("/rejectStatus/{ID}") //   /rejectStatus/5
 	@ResponseBody
-	public int rejectStatus(@PathVariable int ID)
+	public int rejectStatus(@PathVariable("ID") int ID)
 	{
 		trackerService.rejectStatus(ID);
 		return 3;

@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="CUST_ID")
 	private long custId;
-
+	@Column(name="EMAIL",unique=true)
 	private String email;
 
 	@Column(name="FIRST_NAME")

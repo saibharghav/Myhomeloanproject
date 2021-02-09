@@ -46,6 +46,10 @@ public class TrackerDAOImpl implements TrackerDAO {
 		query.setParameter("id",appDAO.getApplicationByID(applicationID));
 		int result = query.executeUpdate();
 		System.out.println("Query number is : "+result);
+//	
+//		ApplicationDAOImpl appDAO=new App;
+//		Application app=appDAO.getApplicationByID(applicationID);
+		
 	}
 	
 	@Transactional

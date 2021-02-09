@@ -115,11 +115,6 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			System.out.println(l.toString());
 			System.out.println("--------------->"+App.getTracker().hashCode());
 			Tracker t=App.getTracker();
-//			hql="SELECT t from Tracker t join Application a ON a.applicationId=t.application and a.applicationId=:sa";
-//			query1=em.createQuery(hql);
-//			System.out.println("APP ID CHECKING....."+App.getApplicationId());
-//			query1.setParameter("sa", App.getApplicationId());
-//			Tracker t= (Tracker) query1.getSingleResult();
 			System.out.println(t.toString());
 			System.out.println("TRACKER ID CHECKING......"+t.getStatus());
 			myApplicationsDTO.setApplicationId(App.getApplicationId());
